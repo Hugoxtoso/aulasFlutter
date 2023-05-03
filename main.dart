@@ -1,53 +1,83 @@
+import 'dart:js_util';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 main() {
-  runApp(aula2());
+  runApp(aula3());
 }
 
-class aula2 extends StatelessWidget {
-  void clickEnviar() {
-    print("mais um seguidor enviou Vbuks ao Amumu Faraó");
-  }
+class aula3 extends StatefulWidget {
 
-  void clickCadastrar() {}
+  @override
+  State<aula3> createState() => _aula3State();
+}
 
-  void clickSalvar() {}
+class _aula3State extends State<aula3> {
+
+  var contador = 0;
+  var contadorBotao = 0;
+  var textoBotao = [
+    "sim",
+    "finalizar",
+    "não",
+  ];
+  final  perguntas = [
+    "Você está interessado em aderir ao amumu faraó?",
+    "Você está disposto a dedicar sua vida ao amumu faraó?",
+    "Você está disposto a abandonar seus cosumes pelo amumu faraó?",
+    "Você está disposto a doar todos os seus patrimonios ao amumu faraó?",
+    "Parabéns, você agora é um seguidor de amumu faraó!"
+  ];
 
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Projeto Aula 02"),
+          title: Text("Projeto Aula 03"),
         ),
-        body: Container(
-          width: 300,
-          margin: EdgeInsets.symmetric(horizontal: 500),
-          child: Row(
-            children: [
-              Expanded(
-                  child: Column(
-                children: [
-                  ElevatedButton(
-                      onPressed: clickEnviar, child: const Text("Enviar")),
-                  ElevatedButton(
-                      onPressed: clickCadastrar,
-                      child: const Text("Cadastrar")),
-                  ElevatedButton(
-                      onPressed: clickSalvar, child: const Text("Salvar")),
-                ],
-              )),
-              const Expanded(
-                  child: Column(
-                children: [
-                  Text("Aprendendo"),
-                  Text("programação"),
-                  Text("Flutter"),
-                ],
-              ))
-            ],
-          ),
-        ),
+        body: Column (
+          children: [
+            Text(perguntas[contador]),
+            ElevatedButton(
+              onPressed: () {
+                if (contador <= 2){
+                  setState(() {
+                    contador: contador++;
+                  });
+                }
+                if (contador == 3){
+                  setState(() {
+                    contador: contador++;
+                    contadorBotao: 2;
+                  });
+
+                }
+            }, 
+            child: Text(textoBotao[contadorBotao]),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                if (contador <= 2){
+                  setState(() {
+                    contador: contador++;
+                  });
+                }
+                if (contador == 3){
+                  setState(() {
+                    contador: contador++;
+                    contadorBotao: 2;
+                  });
+
+                }
+            }, 
+            child: Text(textoBotao[contadorBotao + 2]),
+            ),
+          
+          ],
+
+
+        )
       ),
     );
   }
